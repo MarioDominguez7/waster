@@ -20,7 +20,7 @@ class UsersController extends Controller
     //crear un Usuario
     public function store(Request $request){
         $this->validate($request,[
-            'username'=> 'required|unique:users',
+            'username'=> 'required',
             'email'=>'required|unique:users',
             'password'=> 'required',
         ]); 
