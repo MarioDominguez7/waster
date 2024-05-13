@@ -10,9 +10,10 @@ use Firebase\JWT\JWT;
 class AuthController extends Controller
 {
     public function login(Request $request){
-        $user = User::where('username', $request->username)->first();
+        $user = User::where('email', $request->email)->first();
         if(!$user) return response('', 404);
         if(!password_verify($request->password, $user->password)) return response('', 401);
+       //if($request->password != $user->password)return response('', 401);
         $payload = [
             'sub' => $user->id,
             'iat' => time(),
