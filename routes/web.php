@@ -2,6 +2,8 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use App\Http\Controllers\RegisterController;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -17,6 +19,7 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+$router->post('register', 'RegisterController@store');
 $router->post('login', 'AuthController@login');
 
 function recurso($router, $url, $modelo){
