@@ -19,14 +19,18 @@ class SensorsController extends Controller
     //crear un Usuario
     public function store(Request $request){
         $this->validate($request,[
-            'name'=> 'required|unique:sensors',
+            'name'=> 'required',
             'type'=> 'required',
             'value'=> 'required',
             //'date'=> 'required',
             //'user_id'=> 'required',
-        ]); 
-        $sensor = new Sensor;
-        $sensor->fill($request->all());
+        ]);
+        $sensor = Sensor::find(1);
+        if (!$sensor) $sensor = new Sensor;
+        $sensor -> name = $request->name;
+        $sensor -> type = $request->type;
+        $sensor -> value = $request->value;
+        //$sensor->fill($request->all());
         $sensor->user_id=1;
         $sensor->date = date('Y-m-d H:i:s');
         $sensor->save();

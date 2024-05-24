@@ -19,16 +19,18 @@ class ActuatorsController extends Controller
     //crear un Usuario
     public function store(Request $request){
         $this->validate($request,[
-            'name'=> 'required|unique:actuators',
+            'name'=> 'required',
             'type'=> 'required',
-            'value'=> 'required',
+            //'value'=> 'required',
             //'date'=> 'required',
             //'user_id'=> 'required',
             //'status'=> 'required',
             //'value_status'=> 'required',
         ]); 
-        $actuator = new Actuator;
+        $actuator = Actuator::find(1);
+        if(!$actuator)$actuator = new Actuator;
         $actuator->fill($request->all());
+        $actuator->value=1;
         $actuator->user_id=1;
         $actuator->date = date('Y-m-d H:i:s');
         $actuator->status = 'Apagado';
